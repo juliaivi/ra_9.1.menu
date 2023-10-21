@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import TimeAttackPage from "./components/TimeAttackPage/TimeAttackPage";
+import HomePage from './components/HomePage/HomePage';
+import DriftPage from './components/DriftPage/DriftPage';
+import ForzaPage from './components/ForzaPage/ForzaPage';
+import Menu from './components/Menu/Menu';
 
-function App() {
+
+{/* <HashRouter> предназначен для использования в веб-браузерах, когда URL-адрес по какой-либо причине не должен (или не может быть отправлен) на сервер. Это может произойти в некоторых сценариях совместного хостинга, где у вас нет полного контроля над сервером. В таких ситуациях <HashRouter> позволяет сохранять текущее местоположение в hash части текущего URL, поэтому оно никогда не отправляется на сервер. */}
+{/* <BrowserRouter> сохраняет текущее местоположение в адресной строке браузера, используя чистые URL-адреса, и осуществляет навигацию с помощью встроенного в браузер стека истории. */}
+// Route Маршруты, пожалуй, являются наиболее важной частью приложения React Router. Они связывают сегменты URL с компонентами, загрузкой данных и изменениями данных. Благодаря вложенности маршрутов сложные макеты приложений и зависимости от данных становятся простыми и декларативными. Маршруты - это объекты, передаваемые функциям создания маршрутизатора:
+{/* <Router> это низкоуровневый интерфейс, который является общим для всех компонентов маршрутизатора (таких как <BrowserRouter> и <StaticRouter>). С точки зрения React, <Router> это поставщик контекста, который предоставляет информацию о маршруте остальной части приложения.<Router basename> Prop может использоваться для привязки всех маршрутов и ссылок в вашем приложении к "базовой" части URL-пути, которую все они используют. Это полезно при рендеринге только части более крупного приложения с помощью React Router или когда ваше приложение имеет несколько точек входа. Базовые имена не чувствительны к регистру. Всякий раз, когда местоположение меняется, <Routes> просматривает все свои дочерние маршруты, чтобы найти наилучшее соответствие, и отображает эту ветвь пользовательского интерфейса.*/}
+{/* <Routes> будут соответствовать набору дочерних маршрутов из текущего местоположения. */}
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <div>
+          <Menu />
+          <div className="page">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/drift" element={<DriftPage />} />
+              <Route path="/timeattack" element={<TimeAttackPage />} />
+              <Route path="/forza" element={<ForzaPage />} />
+            </Routes>
+          </div>
+        </div>
+      </Router>
+    </>
   );
 }
-
-export default App;
